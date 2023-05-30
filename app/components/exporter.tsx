@@ -437,10 +437,8 @@ export function ImagePreviewer(props: {
           </div>
 
           <div>
-            <div className={styles["main-title"]}>ChatGPT Next Web</div>
-            <div className={styles["sub-title"]}>
-              github.com/Yidadaa/ChatGPT-Next-Web
-            </div>
+            <div className={styles["main-title"]}>破壳AI</div>
+            <div className={styles["sub-title"]}>基于chatGPT的AI机器人</div>
             <div className={styles["icons"]}>
               <ExportAvatar avatar={config.avatar} />
               <span className={styles["icon-space"]}>&</span>
@@ -449,16 +447,16 @@ export function ImagePreviewer(props: {
           </div>
           <div>
             <div className={styles["chat-info-item"]}>
-              Model: {mask.modelConfig.model}
+              模型(model): {mask.modelConfig.model}
             </div>
             <div className={styles["chat-info-item"]}>
-              Messages: {props.messages.length}
+              消息(messages): {props.messages.length}
             </div>
             <div className={styles["chat-info-item"]}>
-              Topic: {session.topic}
+              对话(topic): {session.topic}
             </div>
             <div className={styles["chat-info-item"]}>
-              Time:{" "}
+              时间(time):{" "}
               {new Date(
                 props.messages.at(-1)?.date ?? Date.now(),
               ).toLocaleString()}

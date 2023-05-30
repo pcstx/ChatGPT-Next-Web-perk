@@ -8,6 +8,48 @@ import {
   fetchEventSource,
 } from "@fortaine/fetch-event-source";
 import { prettyObject } from "@/app/utils/format";
+import Cookies from "js-cookie";
+
+const loginMessage = (options: ChatOptions) => {
+  options.onFinish?.(
+    "点击登录[pushplus](//www.pushplus.plus/login.html?backUrl=https://ai.pushplus.plus)",
+  );
+};
+
+// # custom content 鉴权拦截；返回true拦截 返回false放开
+const authenticationInterception = async (options: ChatOptions) => {
+  if (useAccessStore.getState().token) {
+    return false;
+  }
+  if (Cookies.get("pushToken")) {
+    // /prompts.json 换成接口地址
+    let inter = false;
+
+    await fetch("//www.pushplus.plus/api/customer/user/userInfo", {
+      headers: {
+        pushToken: Cookies.get("pushToken") || "",
+      },
+    }).then(async (res) => {
+      const response = await res.json();
+      if (response.code === 302) {
+        inter = true;
+        loginMessage(options);
+        return;
+      }
+      if (response?.data?.vipUserResponseDto?.isVip != 1) {
+        inter = true;
+        options.onFinish?.(
+          "此功能仅供会员使用，点击[开通会员](//www.pushplus.plus/vip.html)",
+        );
+      }
+    });
+    return inter;
+    // console.log("res.clone()");
+  } else {
+    loginMessage(options);
+  }
+  return true;
+};
 
 export class ChatGPTApi implements LLMApi {
   public ChatPath = "v1/chat/completions";
@@ -27,6 +69,7 @@ export class ChatGPTApi implements LLMApi {
   }
 
   async chat(options: ChatOptions) {
+    if (await authenticationInterception(options)) return;
     const messages = options.messages.map((v) => ({
       role: v.role,
       content: v.content,
