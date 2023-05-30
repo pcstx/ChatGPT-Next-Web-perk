@@ -12,7 +12,7 @@ import Cookies from "js-cookie";
 
 const loginMessage = (options: ChatOptions) => {
   options.onFinish?.(
-    "点击登录[pushplus](//www.pushplus.plus/login.html?backUrl=https://ai.pushplus.plus)",
+    "请先登录[pushplus](//www.pushplus.plus/login.html?backUrl=https://ai.pushplus.plus)或在[设置](/#/settings)中输入API Key",
   );
 };
 
@@ -39,7 +39,7 @@ const authenticationInterception = async (options: ChatOptions) => {
       if (response?.data?.vipUserResponseDto?.isVip != 1) {
         inter = true;
         options.onFinish?.(
-          "此功能仅供会员使用，点击[开通会员](//www.pushplus.plus/vip.html)",
+          "此功能仅供会员使用，点击[开通会员](//www.pushplus.plus/vip.html)或在[设置](/#/settings)中输入API Key",
         );
       }
     });
