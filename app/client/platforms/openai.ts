@@ -25,7 +25,7 @@ const authenticationInterception = async (options: ChatOptions) => {
     // /prompts.json 换成接口地址
     let inter = false;
 
-    await fetch("//www.pushplus.plus/api/customer/user/userInfo", {
+    await fetch("//www.pushplus.plus/api/customer/user/myInfo", {
       headers: {
         pushToken: Cookies.get("pushToken") || "",
       },
