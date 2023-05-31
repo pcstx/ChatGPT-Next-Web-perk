@@ -5,7 +5,7 @@ const en: RequiredLocaleType = {
   WIP: "Coming Soon...",
   Error: {
     Unauthorized:
-      "Unauthorized access, please enter access code in settings page.",
+      "Unauthorized access, please enter OpenAI API Key in settings page.",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} messages`,
