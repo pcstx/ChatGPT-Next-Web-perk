@@ -16,41 +16,6 @@ const loginMessage = (options: ChatOptions) => {
   );
 };
 
-// # custom content 鉴权拦截；返回true拦截 返回false放开
-const authenticationInterception = async (options: ChatOptions) => {
-  if (useAccessStore.getState().token) {
-    return false;
-  }
-  if (Cookies.get("pushToken")) {
-    // /prompts.json 换成接口地址
-    let inter = false;
-
-    await fetch("//www.pushplus.plus/api/customer/user/myInfo", {
-      headers: {
-        pushToken: Cookies.get("pushToken") || "",
-      },
-    }).then(async (res) => {
-      const response = await res.json();
-      if (response.code === 302) {
-        inter = true;
-        loginMessage(options);
-        return;
-      }
-      if (response?.data?.vipUserResponseDto?.isVip != 1) {
-        inter = true;
-        options.onFinish?.(
-          "此功能仅供会员使用，点击[开通会员](//www.pushplus.plus/vip.html)或在[设置](/#/settings)中输入API Key",
-        );
-      }
-    });
-    return inter;
-    // console.log("res.clone()");
-  } else {
-    loginMessage(options);
-  }
-  return true;
-};
-
 export class ChatGPTApi implements LLMApi {
   public ChatPath = "v1/chat/completions";
   public UsagePath = "dashboard/billing/usage";
@@ -69,7 +34,6 @@ export class ChatGPTApi implements LLMApi {
   }
 
   async chat(options: ChatOptions) {
-    if (await authenticationInterception(options)) return;
     const messages = options.messages.map((v) => ({
       role: v.role,
       content: v.content,
@@ -151,7 +115,12 @@ export class ChatGPTApi implements LLMApi {
               let extraInfo = await res.clone().text();
               try {
                 const resJson = await res.clone().json();
-                extraInfo = prettyObject(resJson);
+                if (res.status === 599) {
+                  responseTexts.splice(0, 1, resJson.msg);
+                  extraInfo = "";
+                } else {
+                  extraInfo = prettyObject(resJson);
+                }
               } catch {}
 
               if (res.status === 401) {
