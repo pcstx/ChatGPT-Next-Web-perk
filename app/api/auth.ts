@@ -61,7 +61,7 @@ export async function auth(req: NextRequest) {
     if (req.cookies.get("pushToken")?.value) {
       //请求判断是否会员
       const res = await fetch(
-        "http://www.pushplus.plus/api/customer/user/myInfo",
+        "http://www.pushplus.plus/api/customer/vipUser/isVip",
         {
           headers: {
             pushToken: req.cookies.get("pushToken")?.value || "",
@@ -75,7 +75,7 @@ export async function auth(req: NextRequest) {
           msg: "请先登录[pushplus](//www.pushplus.plus/login.html?backUrl=https://ai.pushplus.plus)或在[设置](/#/settings)中输入API Key",
         };
       }
-      if (response?.data?.vipUserResponseDto?.isVip != 1) {
+      if (response?.data?.isVip != 1) {
         return {
           customError: true,
           msg: "此功能仅供会员使用，点击[开通会员](//www.pushplus.plus/vip.html)或在[设置](/#/settings)中输入API Key",
