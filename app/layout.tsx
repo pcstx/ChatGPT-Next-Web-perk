@@ -8,7 +8,8 @@ const buildConfig = getBuildConfig();
 
 export const metadata = {
   title: "破壳AI",
-  description: "一个基于chatGPT的AI机器人",
+  description: "破壳AI是一个基于chatGPT的AI机器人",
+  keywords: "破壳AI,PerkAI,chatGPT,ai",
   viewport: {
     width: "device-width",
     initialScale: 1,
