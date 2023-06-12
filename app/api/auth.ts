@@ -68,15 +68,6 @@ async function handlerPerkAuth(perkToken: string) {
     return 0;
   }
 }
-async function getPerkVip(perkToken: string) {
-  //私有化方法不做太多的判断了，直接出发方法就好了
-
-  return await fetch("https://www.pushplus.plus/api/customer/user/chatGPT", {
-    headers: {
-      pushToken: perkToken,
-    },
-  });
-}
 
 export async function auth(req: NextRequest) {
   const authToken = req.headers.get("Authorization") ?? "";
