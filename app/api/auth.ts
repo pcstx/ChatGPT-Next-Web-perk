@@ -100,22 +100,26 @@ export async function auth(req: NextRequest) {
     } else {
       console.log("[Auth] admin did not provide an api key");
     }
-    const perkAuthType = await handlerPerkAuth(
-      req.cookies.get("pushToken")?.value ?? "",
-    );
-    if (perkAuthType != 3 && perkAuthType != 2) {
-      if (perkAuthType == 0) {
-        return {
-          customError: true,
-          msg: "请先登录[pushplus](//www.pushplus.plus/login.html?backUrl=https://ai.pushplus.plus)或在[设置](/#/settings)中输入API Key",
-        };
+    if (req.url.indexOf("v1/chat/completions") > 0) {
+      const perkAuthType = await handlerPerkAuth(
+        req.cookies.get("pushToken")?.value ?? "",
+      );
+      if (perkAuthType != 3 && perkAuthType != 2) {
+        if (perkAuthType == 0) {
+          return {
+            customError: true,
+            msg: "请先登录[pushplus](//www.pushplus.plus/login.html?backUrl=https://ai.pushplus.plus)或在[设置](/#/settings)中输入API Key",
+          };
+        }
+        if (perkAuthType == 1) {
+          return {
+            customError: true,
+            msg: "免费额度使用完毕，点击[开通会员](//www.pushplus.plus/vip.html)或在[设置](/#/settings)中输入API Key",
+          };
+        }
       }
-      if (perkAuthType == 1) {
-        return {
-          customError: true,
-          msg: "免费额度使用完毕，点击[开通会员](//www.pushplus.plus/vip.html)或在[设置](/#/settings)中输入API Key",
-        };
-      }
+    } else {
+      console.log("[Auth] Restrict Chat Only");
     }
   } else {
     console.log("[Auth] use user api key");
