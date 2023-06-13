@@ -7,7 +7,7 @@ import { LRUCache } from "lru-cache";
 
 const cache = new LRUCache({
   max: 500, // 最多缓存500个条目
-  ttl: 1000 * 60 * 30, // 每个条目最长缓存30分钟
+  ttl: 1000 * 60 * 60, // 每个条目最长缓存1个小时
 });
 
 function getIP(req: NextRequest) {
@@ -50,6 +50,9 @@ async function handlerPerkAuth(perkToken: string) {
       const response = await res.json();
       const isFreeUser = response?.data?.freeUse ?? false;
       const isVip = !!(response?.data?.isVip ?? 0);
+      if (response.code == 302) {
+        return 0; // 登录过期了
+      }
       if (isVip) {
         cache.set(`pp-${perkToken}`, "1");
         return 3;
