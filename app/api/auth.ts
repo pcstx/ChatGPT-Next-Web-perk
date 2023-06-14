@@ -111,7 +111,7 @@ export async function auth(req: NextRequest) {
         if (perkAuthType == 0) {
           return {
             customError: true,
-            msg: "请先登录[pushplus](//www.pushplus.plus/login.html?backUrl=https://ai.pushplus.plus)或在[设置](/#/settings)中输入API Key",
+            msg: "请先登录[pushplus](//www.pushplus.plus/login.html?backUrl=https%3A%2F%2Fai.pushplus.plus)或在[设置](/#/settings)中输入API Key",
           };
         }
         if (perkAuthType == 1) {
