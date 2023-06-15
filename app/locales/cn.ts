@@ -6,6 +6,13 @@ const cn = {
     Unauthorized:
       "API Key不正确，请前往[设置](/#/settings)页输入正确的OpenAI API Key。",
   },
+  Auth: {
+    Title: "需要密码",
+    Tips: "管理员开启了密码验证，请在下方填入访问码",
+    Input: "在此处填写访问码",
+    Confirm: "确认",
+    Later: "稍后再说",
+  },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} 条对话`,
   },
@@ -19,6 +26,19 @@ const cn = {
       Stop: "停止",
       Retry: "重试",
       Delete: "删除",
+    },
+    InputActions: {
+      Stop: "停止响应",
+      ToBottom: "滚到最新",
+      Theme: {
+        auto: "自动主题",
+        light: "亮色模式",
+        dark: "深色模式",
+      },
+      Prompt: "快捷指令",
+      Masks: "所有面具",
+      Clear: "清除聊天",
+      Settings: "对话设置",
     },
     Rename: "重命名对话",
     Typing: "正在输入…",
@@ -142,7 +162,7 @@ const cn = {
     },
     Token: {
       Title: "API Key",
-      SubTitle: "使用自己的 Key 可绕过密码访问限制",
+      SubTitle: "使用自己的 Key 可直接使用",
       Placeholder: "OpenAI API Key",
     },
 
@@ -159,6 +179,10 @@ const cn = {
       Title: "访问密码",
       SubTitle: "管理员已开启加密访问",
       Placeholder: "请输入访问密码",
+    },
+    Endpoint: {
+      Title: "接口地址",
+      SubTitle: "除默认地址外，必须包含 http(s)://",
     },
     Model: "模型 (model)",
     Temperature: {
