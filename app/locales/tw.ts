@@ -122,7 +122,7 @@ const tw: LocaleType = {
     },
     Token: {
       Title: "API Key",
-      SubTitle: "使用自己的 Key 可規避授權存取限制",
+      SubTitle: "使用自己的 Key 可直接访问",
       Placeholder: "OpenAI API Key",
     },
     Usage: {
