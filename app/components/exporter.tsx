@@ -437,8 +437,8 @@ export function ImagePreviewer(props: {
           </div>
 
           <div>
-            <div className={styles["main-title"]}>ç ´å£³AI</div>
-            <div className={styles["sub-title"]}>åŸºäºchatGPTçš„AIæœºå™¨äºº</div>
+            <div className={styles["main-title"]}>ÆÆ¿ÇAI</div>
+            <div className={styles["sub-title"]}>»ùÓÚchatGPTµÄAI»úÆ÷ÈË</div>
             <div className={styles["icons"]}>
               <ExportAvatar avatar={config.avatar} />
               <span className={styles["icon-space"]}>&</span>
@@ -447,16 +447,16 @@ export function ImagePreviewer(props: {
           </div>
           <div>
             <div className={styles["chat-info-item"]}>
-              æ¨¡å‹(model): {mask.modelConfig.model}
+              Ä£ĞÍ(model): {mask.modelConfig.model}
             </div>
             <div className={styles["chat-info-item"]}>
-              æ¶ˆæ¯(messages): {props.messages.length}
+              ÏûÏ¢(messages): {props.messages.length}
             </div>
             <div className={styles["chat-info-item"]}>
-              å¯¹è¯(topic): {session.topic}
+              ¶Ô»°(topic): {session.topic}
             </div>
             <div className={styles["chat-info-item"]}>
-              æ—¶é—´(time):{" "}
+              Ê±¼ä(time):{" "}
               {new Date(
                 props.messages.at(-1)?.date ?? Date.now(),
               ).toLocaleString()}

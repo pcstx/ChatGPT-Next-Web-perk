@@ -1,7 +1,7 @@
 import { SubmitKey } from "../store/config";
-import { RequiredLocaleType } from "./index";
+import { LocaleType } from "./index";
 
-const en: RequiredLocaleType = {
+const en: LocaleType = {
   WIP: "Coming Soon...",
   Error: {
     Unauthorized:
@@ -18,7 +18,7 @@ const en: RequiredLocaleType = {
     ChatItemCount: (count: number) => `${count} messages`,
   },
   Chat: {
-    SubTitle: (count: number) => `${count} messages with PerkAI`,
+    SubTitle: (count: number) => `${count} messages with ChatGPT`,
     Actions: {
       ChatList: "Go To Chat List",
       CompressedHistory: "Compressed History Memory Prompt",

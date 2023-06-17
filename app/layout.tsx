@@ -5,9 +5,9 @@ import "./styles/highlight.scss";
 import { getClientConfig } from "./config/client";
 
 export const metadata = {
-  title: "ç ´å£³AI",
-  description: "ç ´å£³AIæ˜¯ä¸€ä¸ªåŸºäºŽchatGPTçš„AIæœºå™¨äºº",
-  keywords: "ç ´å£³AI,PerkAI,chatGPT,ai",
+  title: "ÆÆ¿ÇAI",
+  description: "ÆÆ¿ÇAIÊÇÒ»¸ö»ùÓÚchatGPTµÄAI»úÆ÷ÈË",
+  keywords: "ÆÆ¿ÇAI,PerkAI,chatGPT,ai",
   viewport: {
     width: "device-width",
     initialScale: 1,
@@ -18,7 +18,7 @@ export const metadata = {
     { media: "(prefers-color-scheme: dark)", color: "#151515" },
   ],
   appleWebApp: {
-    title: "ç ´å£³AI",
+    title: "ÆÆ¿ÇAI",
     statusBarStyle: "default",
   },
 };
