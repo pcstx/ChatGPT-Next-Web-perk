@@ -34,12 +34,12 @@ function parseApiKey(bearToken: string) {
  * 处理pushplus的token登录状态
  * 返回：0:未登录，1:免费会员不可用，2:免费会员可用，3:会员，
  */
-async function handlerPerkAuth(perkToken: string) {
-  if (perkToken && perkToken.length) {
+async function handlerPerkAuth(perkToken: string, openId: string) {
+  if ((perkToken && perkToken.length) || (openId && openId.length)) {
     const isVip: boolean = !!cache.get(`pp-${perkToken}`);
     if (!isVip) {
       const res = await fetch(
-        "https://www.pushplus.plus/api/customer/user/chatGPT",
+        "https://www.pushplus.plus/api/common/user/chatGPT?openId=" + openId,
         {
           headers: {
             pushToken: perkToken,
@@ -105,6 +105,7 @@ export async function auth(req: NextRequest) {
     if (req.url.indexOf("v1/chat/completions") > 0) {
       const perkAuthType = await handlerPerkAuth(
         req.cookies.get("pushToken")?.value ?? "",
+        req.nextUrl.searchParams.get("openId") ?? "",
       );
       if (perkAuthType != 3 && perkAuthType != 2) {
         if (perkAuthType == 0) {
