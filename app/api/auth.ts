@@ -5,8 +5,8 @@ import { ACCESS_CODE_PREFIX } from "../constant";
 import { LRUCache } from "lru-cache";
 
 const cache = new LRUCache({
-  max: 500, // ×î¶à»º´æ500¸öÌõÄ¿
-  ttl: 1000 * 60 * 60, // Ã¿¸öÌõÄ¿×î³¤»º´æ1¸öĞ¡Ê±
+  max: 500, // æœ€å¤šç¼“å­˜500ä¸ªæ¡ç›®
+  ttl: 1000 * 60 * 60, // æ¯ä¸ªæ¡ç›®æœ€é•¿ç¼“å­˜1ä¸ªå°æ—¶
 });
 
 function getIP(req: NextRequest) {
@@ -31,8 +31,8 @@ function parseApiKey(bearToken: string) {
 }
 
 /**
- * ´¦ÀípushplusµÄtokenµÇÂ¼×´Ì¬
- * ·µ»Ø£º0:Î´µÇÂ¼£¬1:Ãâ·Ñ»áÔ±²»¿ÉÓÃ£¬2:Ãâ·Ñ»áÔ±¿ÉÓÃ£¬3:»áÔ±£¬
+ * å¤„ç†pushplusçš„tokenç™»å½•çŠ¶æ€
+ * è¿”å›ï¼š0:æœªç™»å½•ï¼Œ1:å…è´¹ä¼šå‘˜ä¸å¯ç”¨ï¼Œ2:å…è´¹ä¼šå‘˜å¯ç”¨ï¼Œ3:ä¼šå‘˜ï¼Œ
  */
 async function handlerPerkAuth(perkToken: string) {
   if (perkToken && perkToken.length) {
@@ -50,7 +50,7 @@ async function handlerPerkAuth(perkToken: string) {
       const isFreeUser = response?.data?.freeUse ?? false;
       const isVip = !!(response?.data?.isVip ?? 0);
       if (response.code == 302) {
-        return 0; // µÇÂ¼¹ıÆÚÁË
+        return 0; // ç™»å½•è¿‡æœŸäº†
       }
       if (isVip) {
         cache.set(`pp-${perkToken}`, "1");
@@ -62,7 +62,7 @@ async function handlerPerkAuth(perkToken: string) {
         return 1;
       }
     } else {
-      //¶ÁÈ¡»º´æ
+      //è¯»å–ç¼“å­˜
       return 3;
     }
   } else {
@@ -110,13 +110,13 @@ export async function auth(req: NextRequest) {
         if (perkAuthType == 0) {
           return {
             customError: true,
-            msg: "ÇëÏÈµÇÂ¼[pushplus](//www.pushplus.plus/login.html?backUrl=https%3A%2F%2Fai.pushplus.plus)»òÔÚ[ÉèÖÃ](/#/settings)ÖĞÊäÈëAPI Key",
+            msg: "è¯·å…ˆç™»å½•[pushplus](//www.pushplus.plus/login.html?backUrl=https%3A%2F%2Fai.pushplus.plus)æˆ–åœ¨[è®¾ç½®](/#/settings)ä¸­è¾“å…¥API Key",
           };
         }
         if (perkAuthType == 1) {
           return {
             customError: true,
-            msg: "Ãâ·Ñ¶î¶ÈÊ¹ÓÃÍê±Ï£¬µã»÷[¿ªÍ¨»áÔ±](//www.pushplus.plus/vip.html)»òÔÚ[ÉèÖÃ](/#/settings)ÖĞÊäÈëAPI Key",
+            msg: "å…è´¹é¢åº¦ä½¿ç”¨å®Œæ¯•ï¼Œç‚¹å‡»[å¼€é€šä¼šå‘˜](//www.pushplus.plus/vip.html)æˆ–åœ¨[è®¾ç½®](/#/settings)ä¸­è¾“å…¥API Key",
           };
         }
       }

@@ -11,7 +11,7 @@ import { prettyObject } from "@/app/utils/format";
 
 const loginMessage = (options: ChatOptions) => {
   options.onFinish?.(
-    "请先登录[pushplus](//www.pushplus.plus/login.html?backUrl=https://ai.pushplus.plus)或在[设置](/#/settings)中输入API Key",
+    "璇峰厛鐧诲綍[pushplus](//www.pushplus.plus/login.html?backUrl=https://ai.pushplus.plus)鎴栧湪[璁剧疆](/#/settings)涓緭鍏PI Key",
   );
 };
 
