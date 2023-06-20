@@ -18,7 +18,7 @@ export const metadata = {
     { media: "(prefers-color-scheme: dark)", color: "#151515" },
   ],
   appleWebApp: {
-    title: "�ƿ�AI",
+    title: "破壳AI",
     statusBarStyle: "default",
   },
 };
