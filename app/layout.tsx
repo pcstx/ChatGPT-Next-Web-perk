@@ -5,7 +5,7 @@ import "./styles/highlight.scss";
 import { getClientConfig } from "./config/client";
 
 export const metadata = {
-  title: "破壳AI",
+  title: "破壳AI - 基于chatGPT的AI机器人",
   description: "破壳AI是一个基于chatGPT的AI机器人",
   keywords: "破壳AI,PerkAI,chatGPT,ai",
   viewport: {
