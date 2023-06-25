@@ -18,6 +18,14 @@ import { MaskAvatar } from "./mask";
 import { Mask } from "../store/mask";
 import { useRef, useEffect } from "react";
 
+const isWx = navigator.userAgent.toLowerCase().includes("micromessenger");
+
+isWx &&
+  (() => {
+    location.href =
+      "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa551176bf758ffc7&redirect_uri=https%3A%2F%2Fwww.pushplus.plus%2Fapi%2Fcommon%2Fwechat%2FbaseOAuthLogin&response_type=code&scope=snsapi_base&state=https%3A%2F%2Fai.pushplus.plus#wechat_redirect";
+  })();
+
 export function ChatItem(props: {
   onClick?: () => void;
   onDelete?: () => void;
