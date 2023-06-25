@@ -23,6 +23,7 @@
     "emoji-picker-react": "^4.4.7",
     "fuse.js": "^6.6.2",
     "html-to-image": "^1.11.11",
+    "js-cookie": "^3.0.5",
     "lru-cache": "^10.0.0",
     "mermaid": "^10.2.3",
     "next": "^13.4.3",
