@@ -20,6 +20,10 @@ docker run -d -p 3000:3000 \
    registry.cn-hangzhou.aliyuncs.com/perk-ai/perkai:perkai01
 ```
 
+## 访问方式
+1. nginx反代了3000端口到ai2.pushplus.plus域名。
+2. ai2.pushplus.plus域名dns解析到120.27.219.66服务器上。
+
 ## 其他说明
 1、服务部署在国内服务器上，通过代理方式访问openAI接口。
 
