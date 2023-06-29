@@ -14,7 +14,7 @@ docker pull registry.cn-hangzhou.aliyuncs.com/perk-ai/perkai:perkai01
 ```
 docker run -d -p 3000:3000 \
    --name=perkAI \
-   -e OPENAI_API_KEY="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" \
+   -e OPENAI_API_KEY="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" \
    --net=host \
    -e PROXY_URL="http://127.0.0.1:7890" \
    registry.cn-hangzhou.aliyuncs.com/perk-ai/perkai:perkai01
